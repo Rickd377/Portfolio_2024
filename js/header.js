@@ -1,6 +1,7 @@
 const linkItems = document.querySelectorAll(".link-item");
 const nav = document.querySelector(".nav-content");
 const indicator = document.querySelector(".indicator");
+const customCursor = document.querySelector(".custom-cursor");
 
 function setIndicatorPosition(activeItem) {
     const linkItemRect = activeItem.getBoundingClientRect();
@@ -26,4 +27,9 @@ linkItems.forEach((linkItem) => {
         linkItem.classList.add("active");
         setIndicatorPosition(linkItem);
     });
+});
+
+document.addEventListener("mousemove", (e) => {
+    customCursor.style.left = `${e.clientX}px`;
+    customCursor.style.top = `${e.clientY}px`;
 });

@@ -9,6 +9,7 @@
     --secondary-color: #999;
     --background-color: #fff;
     --active-color: #333;
+    --cursor-size: 20px;
     --nav-item-total-width: calc(var(--nav-item-width) + var(--nav-gap));
 }
 
@@ -22,7 +23,7 @@
 body {
     height: 100vh;
     background: var(--primary-color);
-
+    cursor: none;
 }
 
 nav {
@@ -30,6 +31,10 @@ nav {
     background: var(--background-color);
     padding: 0 var(--nav-gap);
     position: relative;
+}
+
+nav a {
+    cursor: none;
 }
 
 nav::before {
@@ -127,4 +132,20 @@ nav .indicator::after {
     background-color: var(--background-color);
     border-top-left-radius: 25px;
     box-shadow: -1px -13px var(--active-color);
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    background: url('../assets/mouseicon.png') no-repeat center center;
+    background-size: contain;
+    pointer-events: none;
+    transform: translate(0) scaleX(-1); /* Flip the image horizontally and position the clicker at the top-left */
+    transition: transform 0.1s ease;
+    z-index: 1000;
+}
+
+.link-item:hover ~ .custom-cursor {
+    transform: translate(0, 0) scale(1.5) scaleX(-1); /* Maintain the flip on hover and position the image at the top-left */
 }
