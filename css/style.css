@@ -36,6 +36,10 @@ body.scrollable {
     --white: #fff;
 }
 
+a {
+    cursor: none;
+}
+
 /* Hide all target divs by default, except for the homepage */
 div[data-name="projects"], div[data-name="contact"], div[data-name="about"], div[data-name="resume"] {
     display: none;
@@ -50,9 +54,6 @@ header {
     background: var(--nav-color);
     padding: 0 var(--nav-gap);
     position: relative;
-}
-a {
-    cursor: none;
 }
 
 header::before {
@@ -156,16 +157,16 @@ header .indicator::after {
     position: fixed;
     width: 60px;
     height: 60px;
-    background: url('https://cdn-icons-png.flaticon.com/512/9357/9357543.png') no-repeat center center;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="36" viewBox="0 0 24 24"><path fill="%23000" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>') no-repeat center center;
     background-size: contain;
+    transform: translate(-30%, -21%);
     pointer-events: none;
-    transform: translate(0) scaleX(-1); /* Flip the image horizontally and position the clicker at the top-left */
     transition: transform 0.1s ease;
     z-index: 1000;
 }
 
 .link-item:hover ~ .custom-cursor {
-    transform: translate(0, 0) scale(1.5) scaleX(-1); /* Maintain the flip on hover and position the image at the top-left */
+    transform: translate(0, 0); /* Maintain the flip on hover and position the image at the top-left */
 }
 
 /* end of header styling */
@@ -294,7 +295,6 @@ header .indicator::after {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 4 columns */
     width: 85vw;
-    background-color: #fff;
     margin: auto;
     margin-top: 100px;
     padding: 20px;
@@ -302,19 +302,49 @@ header .indicator::after {
 }
 
 #projects .project {
+    --br-project: 10px;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border-radius: 10px;
-    background-color: gray;
+    border-radius: var(--br-project);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: var(--white);
     overflow: hidden; /* Ensure content doesn't overflow */
+    transition: all 0.5s;
+    position: relative;
+}
+
+#projects .project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 #projects .project img {
-    height: 50%; /* Cover half of the parent */
+    height: 50%;
     width: 100%;
     object-fit: cover;
+}
+
+#projects .bottom-section {
+    width: 100%;
+    height: 50%;
+    padding: 10px;
+}
+
+#projects .bottom-section p {
+    font-size: clamp(0.7rem, 0.9rem, 1rem); /* Minimum 0.8rem, preferred 2vw, maximum 1rem */
+}
+
+#projects .bottom-section a {
+    background-color: var(--shadow-color);
+    color: var(--white);
+    text-decoration: none;
+    padding: 7.5px 20px;
+    position: absolute;
+    bottom: 10px;
+    border-radius: calc(var(--br-project) / 2);
 }
 
 #projects .span-2 {
@@ -324,6 +354,54 @@ header .indicator::after {
 #projects .project:not(.span-2) {
     aspect-ratio: 1;
 }
+
+
+#projects .span-2 {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#projects .span-2:hover .sub-box {
+    top: 0;
+}
+
+#projects .sub-box {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(transparent, black);
+    top: 100%;
+    transition: all 0.4s ease;
+    border-radius: var(--br-project);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--white);
+}
+
+#projects .sub-box a {
+    background-color: var(--shadow-color);
+    color: var(--white);
+    text-decoration: none;
+    padding: 7.5px 20px;
+    border-radius: calc(var(--br-project) / 2);
+    margin-top: 10px;
+}
+
+#projects .sub-box p {
+    width: 60%;
+    text-align: center;
+    font-size: clamp(0.7rem, 0.9rem, 1rem); /* Minimum 0.8rem, preferred 2vw, maximum 1rem */
+}
+
+#projects .span-id-1 {
+    background-image: url('https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg');
+}
+
 /* end of projects styling */
 
 /* Responsive styles */
