@@ -5,50 +5,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"> <!--All Fontawesome icons-->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+    <!--All Fontawesome icons-->
     <title>My Portfolio</title>
 </head>
 
 <body>
+    <div class="custom-cursor"></div>
 
-    <nav class="nav">
+    <header>
         <ul class="nav-content">
             <li class="nav-list">
-                <a href="#" class="link-item active">
+                <a href="#" class="link-item active" data-target="homepage">
                     <i class="fas fa-home link-icon"></i>
                     <span class="link-text">Home</span>
                 </a>
             </li>
             <li class="nav-list">
-                <a href="#" class="link-item">
+                <a href="#" class="link-item" data-target="projects">
                     <i class="fas fa-rectangle-history link-icon"></i>
                     <span class="link-text">Projects</span>
                 </a>
             </li>
             <li class="nav-list">
-                <a href="#" class="link-item">
+                <a href="#" class="link-item" data-target="contact">
                     <i class="fas fa-message link-icon"></i>
                     <span class="link-text">Contact Me</span>
                 </a>
             </li>
             <li class="nav-list">
-                <a href="#" class="link-item">
+                <a href="#" class="link-item" data-target="about">
                     <i class="fas fa-user link-icon"></i>
                     <span class="link-text">About me</span>
                 </a>
             </li>
             <li class="nav-list">
-                <a href="#" class="link-item">
+                <a href="#" class="link-item" data-target="resume">
                     <i class="fas fa-file-user link-icon"></i>
                     <span class="link-text">Resume</span>
                 </a>
             </li>
-
             <span class="indicator"></span>
         </ul>
-    </nav>
-    <div class="custom-cursor"></div>
+    </header>
+
+    <div id="homepage" data-name="homepage">
+        <div class="content">
+            <p class="description">I'm a software developer specialized in front-end. I like to code new projects and if
+                i run into a mistake i try to fix it right away.</p>
+            <a href="#" class="btn">Contact Me</a>
+        </div>
+
+        <div class="circle"></div>
+        <img src="https://png.pngtree.com/png-vector/20231103/ourmid/pngtree-happy-corporate-business-professional-one-man-clipart-white-background-png-image_10329231.png"
+            alt="" class="profile-img">
+        <h1 class="title">I'm <span>Rick</span>,<br>Software Developer</h1>
+
+        <div class="experience">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <p class="experience-text"><span id="experience-years">0</span><span> Years</span><br>Experience</p>
+        </div>
+    </div>
+
+    <div id="projects" data-name="projects">
+        <div class="project-container">
+            <!-- row 1 -->
+            <div class="project">
+                <img src="https://i.ytimg.com/vi/2Ut6faTRJ6A/maxresdefault.jpg" alt="">
+                <h1>Project 1</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+            </div>
+            <div class="project">
+                
+            </div>
+            <div class="project">
+                
+            </div>
+            <div class="project span-2">
+                
+            </div>
+            <!-- row 2 -->
+            <div class="project span-2">
+                
+            </div>
+            <div class="project">
+                
+            </div>
+            <div class="project">
+                
+            </div>
+            <div class="project">
+                
+            </div>
+        </div>
+    </div>
+    <div data-name="contact">
+        <h1>asdfasdfa</h1>Contact content
+    </div>
+    <div data-name="about">About content</div>
+    <div data-name="resume">Resume content</div>
+
     <script src="js/header.js"></script>
+    <script src="js/general.js"></script>
 </body>
 
 </html>

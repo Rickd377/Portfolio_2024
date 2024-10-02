@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-:root {
-    --nav-height: 120px;
-    --nav-gap: 20px;
-    --nav-item-width: 96px;
-    --indicator-size: 36px;
-    --primary-color: #4070F4;
-    --secondary-color: #999;
-    --background-color: #fff;
-    --active-color: #333;
-    --cursor-size: 20px;
-    --nav-item-total-width: calc(var(--nav-item-width) + var(--nav-gap));
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -22,34 +9,65 @@
 
 body {
     height: 100vh;
-    background: var(--primary-color);
+    background: var(--background-color);
     cursor: none;
+    color: var(--icon-active);
+    overflow: hidden;
 }
 
-nav {
-    width: 100%;
-    background: var(--background-color);
+body.scrollable {
+    overflow-y: auto;
+}
+
+:root {
+    --nav-item-total-width: calc(var(--nav-item-width) + var(--nav-gap));
+    --nav-height: 120px;
+    --nav-gap: 20px;
+    --nav-item-width: 96px;
+    --indicator-size: 36px;
+    --icon-color: #666;
+    --icon-active: #333;
+    --nav-color: #fff;
+    --background-color: #90CAF9;
+    --shadow-color: #2196F3;
+    --indicator-color: #E3F2FD;
+    --cursor-size: 20px;
+    --star-color: #fe853a;
+    --white: #fff;
+}
+
+/* Hide all target divs by default, except for the homepage */
+div[data-name="projects"], div[data-name="contact"], div[data-name="about"], div[data-name="resume"] {
+    display: none;
+}
+
+div.active {
+    display: block;
+}
+
+header {
+    width: 100vw;
+    background: var(--nav-color);
     padding: 0 var(--nav-gap);
     position: relative;
 }
-
-nav a {
+a {
     cursor: none;
 }
 
-nav::before {
+header::before {
     content: '';
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: var(--active-color);
-    height: 20px; /* Adjust height as needed */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    z-index: -1; /* Ensure the shadow is below the nav */
+    background-color: var(--icon-active);
+    height: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: -1;
 }
 
-nav .nav-content {
+header .nav-content {
     display: flex;
     align-items: center;
     height: var(--nav-height);
@@ -58,7 +76,7 @@ nav .nav-content {
     justify-content: space-around;
 }
 
-nav .link-item {
+header .link-item {
     height: var(--nav-height);
     width: var(--nav-item-width);
     display: flex;
@@ -69,76 +87,76 @@ nav .link-item {
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.link-item.active {
+header .link-item.active {
     transform: translateY(-10px);
 }
 
-nav .link-icon {
+header .link-icon {
     font-size: 38px;
-    color: var(--secondary-color);
+    color: var(--icon-color);
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-nav .link-item.active .link-icon {
-    color: var(--active-color);
+header .link-item.active .link-icon {
+    color: var(--icon-active);
 }
 
-nav .link-text {
+header .link-text {
     font-size: 12px;
     font-weight: 500;
-    color: var(--active-color);
+    color: var(--icon-active);
     position: absolute;
     transform: translateY(32px);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-nav .link-item.active .link-text {
+header .link-item.active .link-text {
     opacity: 1;
 }
 
-nav .indicator {
+header .indicator {
     position: absolute;
     bottom: -14px;
     left: 48px;
     height: var(--indicator-size);
     width: var(--indicator-size);
-    background: var(--background-color);
-    border: 6px solid var(--active-color);
+    background: var(--nav-color);
+    border: 6px solid var(--icon-active);
     border-radius: 50%;
     transform: translateX(-50%) rotate(180deg);
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     z-index: 1; /* Ensure the indicator is above the shadow */
 }
 
-nav .indicator::before,
-nav .indicator::after {
+header .indicator::before,
+header .indicator::after {
     content: '';
     position: absolute;
-    bottom: -7.44px;
+    bottom: -7.5px;
     height: 24px;
     width: 19px;    
 }
 
-nav .indicator::before {
+header .indicator::before {
     left: -22px;
-    background-color: var(--background-color);
+    background-color: var(--nav-color);
     border-top-right-radius: 25px;
-    box-shadow: 1px -13px var(--active-color);
+    box-shadow: 1px -13px var(--icon-active);
 }
 
-nav .indicator::after {
+header .indicator::after {
     right: -22px;
-    background-color: var(--background-color);
+    background-color: var(--nav-color);
     border-top-left-radius: 25px;
-    box-shadow: -1px -13px var(--active-color);
+    box-shadow: -1px -13px var(--icon-active);
 }
 
 .custom-cursor {
     position: fixed;
     width: 60px;
     height: 60px;
-    background: url('../assets/mouseicon.png') no-repeat center center;
+    background: url('https://cdn-icons-png.flaticon.com/512/9357/9357543.png') no-repeat center center;
     background-size: contain;
     pointer-events: none;
     transform: translate(0) scaleX(-1); /* Flip the image horizontally and position the clicker at the top-left */
@@ -148,4 +166,173 @@ nav .indicator::after {
 
 .link-item:hover ~ .custom-cursor {
     transform: translate(0, 0) scale(1.5) scaleX(-1); /* Maintain the flip on hover and position the image at the top-left */
+}
+
+/* end of header styling */
+
+/* start of homepage styling */
+
+#homepage .circle {
+    content: '';
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--shadow-color);
+    aspect-ratio: 1;
+    height: 70vh;
+    border-radius: 50%;
+}
+
+#homepage .profile-img {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60vh;
+    filter: drop-shadow(2px 6px 10px rgba(0, 0, 0, 0.3));
+    z-index: 3;
+}
+
+#homepage .title {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--icon-active);
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+    line-height: 0.9;
+}
+
+#homepage .title::before {
+    content: 'Hello!';
+    position: absolute;
+    font-size: 1rem;
+    padding: 13px 30px;
+    border: 2px solid var(--icon-active);
+    border-radius: 50px;
+    left: 50%;
+    top: -55px;
+    transform: translateX(-50%);
+}
+
+#homepage .title span {
+    color: transparent;
+    -webkit-text-stroke: 3px var(--shadow-color);
+    -moz-text-stroke: 3px var(--shadow-color);
+    
+}
+
+#homepage .experience {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--star-color);
+    width: 140px;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+#homepage .icon-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#homepage .experience-text {
+    text-align: right;
+    color: var(--icon-active);
+    margin-top: 10px;
+}
+
+#homepage .experience-text span {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#homepage .experience-text:not(span) {
+    font-size: 0.9rem;
+}
+
+#homepage .content {
+    position: absolute;
+    top: 60%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#homepage .btn {
+    padding: 15px 30px;
+    width: fit-content;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    background-color: var(--shadow-color);
+    color: var(--white);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* end of homepage styling */
+
+/* start of projects styling */
+
+#projects .project-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 4 columns */
+    width: 85vw;
+    background-color: #fff;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px;
+    gap: 20px;
+}
+
+#projects .project {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    background-color: gray;
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+#projects .project img {
+    height: 50%; /* Cover half of the parent */
+    width: 100%;
+    object-fit: cover;
+}
+
+#projects .span-2 {
+    grid-column: span 2; /* Span 2 columns */
+}
+
+#projects .project:not(.span-2) {
+    aspect-ratio: 1;
+}
+/* end of projects styling */
+
+/* Responsive styles */
+
+@media screen and (max-width: 768px) {
+    .custom-cursor {
+        display: none;
+    }
+    .link-icon {
+        font-size: clamp(16px, 4vw, 32px); /* Minimum 16px, preferred 4vw, maximum 32px */
+    }
 }
