@@ -325,6 +325,7 @@ header .indicator::after {
     height: 50%;
     width: 100%;
     object-fit: cover;
+    background-position: center;
 }
 
 #projects .bottom-section {
@@ -334,7 +335,7 @@ header .indicator::after {
 }
 
 #projects .bottom-section p {
-    font-size: clamp(0.7rem, 0.9rem, 1rem); /* Minimum 0.8rem, preferred 2vw, maximum 1rem */
+    font-size: clamp(0.5vw, 0.8vw, 0.8vw); /* Minimum 0.8rem, preferred 2vw, maximum 1rem */
 }
 
 #projects .bottom-section a {
@@ -355,6 +356,13 @@ header .indicator::after {
     aspect-ratio: 1;
 }
 
+#projects .project:hover img:not(.span-2) {
+    filter: brightness(0.9);
+}
+
+#projects .project img {
+    transition: filter 0.5s;
+}
 
 #projects .span-2 {
     background-size: cover;
@@ -399,17 +407,27 @@ header .indicator::after {
 }
 
 #projects .span-id-1 {
-    background-image: url('https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg');
+    background-image: url('../link-images/guestbook.png');
+}
+
+#projects .span-id-2 {
+    background-image: url('../link-images/ergowijzer.png');
 }
 
 /* end of projects styling */
 
 /* Responsive styles */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+    body {
+        cursor: default;
+    }
     .custom-cursor {
         display: none;
     }
+}
+
+@media screen and (max-width: 768px) {
     .link-icon {
         font-size: clamp(16px, 4vw, 32px); /* Minimum 16px, preferred 4vw, maximum 32px */
     }

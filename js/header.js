@@ -65,6 +65,17 @@ linkItems.forEach((linkItem) => {
 });
 
 document.addEventListener("mousemove", (e) => {
+    const customCursor = document.querySelector(".custom-cursor");
     customCursor.style.left = `${e.clientX}px`;
     customCursor.style.top = `${e.clientY}px`;
+});
+
+document.addEventListener("mouseleave", () => {
+    const customCursor = document.querySelector(".custom-cursor");
+    customCursor.style.display = "none";
+});
+
+document.addEventListener("mouseenter", () => {
+    const customCursor = document.querySelector(".custom-cursor");
+    customCursor.style.display = "block";
 });
