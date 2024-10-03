@@ -19,21 +19,30 @@ body.scrollable {
     overflow-y: auto;
 }
 
+::selection {
+    background: var(--icon-active);
+    color: var(--white);
+}
+
 :root {
     --nav-item-total-width: calc(var(--nav-item-width) + var(--nav-gap));
     --nav-height: 120px;
     --nav-gap: 20px;
     --nav-item-width: 96px;
     --indicator-size: 36px;
+    --cubic-bezier: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+    --white: #fff;
+    --indicator-color: #E3F2FD;
+    --nav-color: #fff;
     --icon-color: #666;
     --icon-active: #333;
-    --nav-color: #fff;
+    --black: #000;
+
     --background-color: #90CAF9;
     --shadow-color: #2196F3;
-    --indicator-color: #E3F2FD;
     --cursor-size: 20px;
     --star-color: #fe853a;
-    --white: #fff;
 }
 
 a {
@@ -85,7 +94,7 @@ header .link-item {
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: all 0.5s var(--cubic-bezier);
 }
 
 header .link-item.active {
@@ -293,7 +302,7 @@ header .indicator::after {
 
 #projects .project-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 4 columns */
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
     width: 85vw;
     margin: auto;
     margin-top: 100px;
@@ -314,6 +323,8 @@ header .indicator::after {
     overflow: hidden; /* Ensure content doesn't overflow */
     transition: all 0.5s;
     position: relative;
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
 }
 
 #projects .project:hover {
@@ -334,22 +345,26 @@ header .indicator::after {
     padding: 10px;
 }
 
-#projects .bottom-section p {
-    font-size: clamp(0.5vw, 0.8vw, 0.8vw); /* Minimum 0.8rem, preferred 2vw, maximum 1rem */
+#projects h2 {
+    font-size: clamp(1.2rem, 1.5rem, 1.7rem); /* Minimum 1.2rem, preferred 1.5rem, maximum 1.7rem */
+    margin-bottom: 5px;
 }
 
-#projects .bottom-section a {
-    background-color: var(--shadow-color);
-    color: var(--white);
-    text-decoration: none;
-    padding: 7.5px 20px;
-    position: absolute;
-    bottom: 10px;
-    border-radius: calc(var(--br-project) / 2);
+#projects .bottom-section p {
+    font-size: clamp(0.6rem, 0.8vw, 1.2rem); /* Minimum 0.6rem, preferred 0.8vw, maximum 1.2rem */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    transition: all 0.3s ease;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    max-height: calc(4 * 1.2em); /* Ensure the text does not overflow vertically */
 }
 
 #projects .span-2 {
-    grid-column: span 2; /* Span 2 columns */
+    grid-column: span 2;
 }
 
 #projects .project:not(.span-2) {
@@ -357,7 +372,7 @@ header .indicator::after {
 }
 
 #projects .project:hover img:not(.span-2) {
-    filter: brightness(0.9);
+    filter: brightness(0.95);
 }
 
 #projects .project img {
@@ -379,7 +394,7 @@ header .indicator::after {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: linear-gradient(transparent, black);
+    background: linear-gradient(transparent, var(--black));
     top: 100%;
     transition: all 0.4s ease;
     border-radius: var(--br-project);
@@ -418,13 +433,13 @@ header .indicator::after {
 
 /* Responsive styles */
 
-@media screen and (max-width: 1200px) {
-    body {
-        cursor: default;
+/* Media query for screens smaller than 1024px */
+@media screen and (max-width: 1024px) {
+    #projects .project-container {
+        grid-template-columns: repeat(3, 1fr); /* Change to 3 columns */
     }
-    .custom-cursor {
-        display: none;
-    }
+
+    
 }
 
 @media screen and (max-width: 768px) {
