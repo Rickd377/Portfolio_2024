@@ -28,7 +28,7 @@ function setActiveSection(targetName) {
         });
         homepage.style.display = "none";
         targetDiv.classList.add("active");
-        if (targetName === "projects") {
+        if (targetName === "projects" || targetName === "contact") {
             body.classList.add("scrollable");
         } else {
             body.classList.remove("scrollable");
