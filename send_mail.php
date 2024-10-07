@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </script>";
         exit();
     } catch (Exception $e) {
-        error_log("Mailer Error: " . $mail->ErrorInfo); // Log the error
+        error_log("Mailer Error: " . $mail->ErrorInfo);
         echo "<script>
                 alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');
                 window.location.href = 'index.html?active';

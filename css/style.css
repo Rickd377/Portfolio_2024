@@ -26,7 +26,7 @@ body.scrollable {
 
 :root {
     --nav-item-total-width: calc(var(--nav-item-width) + var(--nav-gap));
-    --nav-height: 120px;
+    --nav-height: 100px;
     --nav-gap: 20px;
     --nav-item-width: 96px;
     --indicator-size: 36px;
@@ -38,6 +38,7 @@ body.scrollable {
     --indicator-color: #E3F2FD;
     --nav-color: #fff;
     --light-gray: #ddd;
+    --white-shade: #f9f9f9;
     --icon-color: #666;
     --icon-active: #333;
     --black: #000;
@@ -49,8 +50,7 @@ body.scrollable {
     --star-color: #fe853a;
 }
 
-/* Hide all target divs by default, except for the homepage */
-div[data-name="projects"], div[data-name="contact"], div[data-name="about"], div[data-name="resume"] {
+div[data-name="projects"], div[data-name="contact"], div[data-name="about"] {
     display: none;
 }
 
@@ -101,7 +101,7 @@ header .link-item.active {
 }
 
 header .link-icon {
-    font-size: clamp(30px, 2vw, 40px);
+    font-size: clamp(30px, 1vw, 40px);
     /* font-size: 2vw; */
     color: var(--icon-color);
     transition: all 0.5s var(--cubic-bezier);
@@ -112,13 +112,14 @@ header .link-item.active .link-icon {
 }
 
 header .link-text {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     color: var(--icon-active);
     position: absolute;
     transform: translateY(32px);
     opacity: 0;
     transition: all 0.5s var(--cubic-bezier);
+    margin-top: -8px;
 }
 
 header .link-item.active .link-text {
@@ -183,60 +184,52 @@ header .indicator::after {
 
 /* start of homepage styling */
 
+#homepage .home-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    height: calc(100vh - var(--nav-height));
+    place-items: center;
+    place-content: center;
+}
+
 #homepage .circle {
-    content: '';
-    position: absolute;
-    top: 95%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: var(--shadow-color);
     aspect-ratio: 1;
-    height: 70vh;
     border-radius: 50%;
+    width: 100%;
+    grid-column: 3 / span 2;
+    grid-row: 5 / span 2;
 }
 
 #homepage .profile-img {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 60vh;
     filter: drop-shadow(2px 6px 10px rgba(0, 0, 0, 0.3));
     z-index: 3;
+    grid-column: 3 / span 2;
+    grid-row: 4 / span 2;
+    width: 100%;
 }
 
 #homepage .title {
-    position: absolute;
-    top: 32%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 5rem;
     font-weight: 800;
     color: var(--icon-active);
     text-align: center;
     z-index: 2;
-    width: 100%;
-    line-height: 0.9;
+    line-height: 0.95;
+    grid-column: 1 / span 6;
+    grid-row: 1 / span 2;
 }
 
-#homepage .title::before {
-    content: 'Hello!';
-    position: absolute;
-    font-size: 1rem;
-    padding: 13px 30px;
-    border: 2px solid var(--icon-active);
-    border-radius: 50px;
-    left: 50%;
-    top: -55px;
-    transform: translateX(-50%);
+#homepage .hello-title {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
-#homepage .title span {
+#homepage .title span:not(.hello-title) {
     color: transparent;
     -webkit-text-stroke: 3px var(--shadow-color);
     -moz-text-stroke: 3px var(--shadow-color);
-    
 }
 
 #homepage .experience {
@@ -244,18 +237,14 @@ header .indicator::after {
     justify-content: center;
     flex-direction: column;
     color: var(--star-color);
-    width: 140px;
     font-size: 1.3rem;
-    position: absolute;
-    top: 50%;
-    right: 10%;
-    transform: translate(-50%, -50%) scale(1.2);
+    grid-column: 5 / span 2;
+    grid-row: 3 / span 2;
 }
 
 #homepage .icon-wrapper {
     display: flex;
     justify-content: space-between;
-    width: 100%;
 }
 
 #homepage .experience-text {
@@ -274,16 +263,13 @@ header .indicator::after {
 }
 
 #homepage .content {
-    position: absolute;
-    top: 60%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    width: 450px;
     font-size: 1.2rem;
     font-weight: 600;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    grid-column: 1 / span 2;
+    width: 70%;
 }
 
 #homepage .btn {
@@ -386,24 +372,43 @@ header .indicator::after {
     background-repeat: no-repeat;
 }
 
+@keyframes line {
+    0% {
+        top: 100%;
+        right: 100%;
+    }
+    50% {
+        right: 50%;
+        transform: translateX(-50%);
+    }
+    100% {
+        top: 0;
+        right: 0;
+    }
+}
+
 #projects .span-2:hover .sub-box {
+    animation: line 0.3s ease;
     top: 0;
+    right: 0;
 }
 
 #projects .sub-box {
     content: '';
-    position: absolute;
+    position: relative;
     height: 100%;
     width: 100%;
-    background: linear-gradient(transparent, var(--black));
+    background: linear-gradient(-135deg, transparent, var(--black));
     top: 100%;
+    right: 100%;
     transition: all 0.4s ease;
     border-radius: var(--br-project);
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 15px;
+    padding-left: 30px;
+    align-items: flex-start;
     flex-direction: column;
-    gap: 5px;
     color: var(--white);
 }
 
@@ -418,8 +423,7 @@ header .indicator::after {
 }
 
 #projects .sub-box p {
-    width: 60%;
-    text-align: center;
+    width: 50%;
     font-size: clamp(0.7rem, 1vw, 1rem); /* Minimum 0.8rem, preferred 2vw, maximum 1rem */
 }
 
@@ -435,8 +439,6 @@ header .indicator::after {
 
 /* start of contact styling */
 
-/* Contact Form Styles */
-
 .contact-wrapper {
     min-height: calc(100vh - var(--nav-height));
     width: 100%;
@@ -448,7 +450,7 @@ header .indicator::after {
 }
 
 .contact-form {
-    background-color: #f9f9f9;
+    background-color: var(--white-shade);
     border-radius: 8px;
     box-shadow: 0 4px 8px var(--box-shadow);
     height: fit-content;
@@ -478,10 +480,30 @@ header .indicator::after {
 .contact-form .input-group textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid var(--light-gray);
-    border-radius: 4px;
+    background-color: transparent;
+    border-bottom: 2px solid var(--light-gray) !important;
+    border: none;
     font-size: 1rem;
     color: var(--icon-active);
+}
+
+.contact-form .input-group input:focus,
+.contact-form .input-group textarea:focus {
+    border: 1px solid var(--light-gray);
+    border-bottom: 2px solid var(--shadow-color) !important;
+    outline: none;
+    border-radius: 4px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    font-size: 0.85rem;
+    color: #909090;
+}
+
+.contact-form input:focus::placeholder,
+.contact-form textarea:focus::placeholder {
+    color: transparent;
 }
 
 .contact-form .input-group textarea {

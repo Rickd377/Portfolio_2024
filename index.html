@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li class="nav-list">
-                <a href="#" class="link-item" data-target="resume">
+                <a href="#" class="link-item">
                     <i class="fas fa-file-user link-icon"></i>
                     <span class="link-text">Resume</span>
                 </a>
@@ -50,29 +50,31 @@
         </ul>
     </header>
 
-    <div id="homepage" data-name="homepage">
-        <div class="content">
-            <p class="description">I'm a software developer specialized in front-end. I like to code new projects and if
-                i run into a mistake i try to fix it right away.</p>
-            <a href="#" class="btn">Contact Me</a>
-        </div>
-
-        <div class="circle"></div>
-        <img src="https://png.pngtree.com/png-vector/20231103/ourmid/pngtree-happy-corporate-business-professional-one-man-clipart-white-background-png-image_10329231.png"
-            alt="" class="profile-img">
-        <h1 class="title">I'm <span>Rick</span>,<br>Software Developer</h1>
-
-        <div class="experience">
-            <div class="icon-wrapper">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
+        <div id="homepage" data-name="homepage">
+            <div class="home-wrapper">
+            <div class="content">
+                <p class="description">I'm a software developer specialized in front-end. I like to code new projects and if
+                    i run into a mistake i try to fix it right away.</p>
+                <a href="#" class="btn">Contact Me</a>
             </div>
-            <p class="experience-text"><span id="experience-years">0</span><span> Years</span><br>Experience</p>
+
+            <div class="circle"></div>
+            <img src="https://png.pngtree.com/png-vector/20231103/ourmid/pngtree-happy-corporate-business-professional-one-man-clipart-white-background-png-image_10329231.png"
+                alt="" class="profile-img">
+            <h1 class="title"><span class="hello-title">Hello,</span><br> I'm <span>Rick</span>,<br>Software Developer</h1>
+
+            <div class="experience">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <p class="experience-text"><span id="experience-years">0</span><span> Years</span><br>Experience</p>
+                </div>
+            </div>
         </div>
-    </div>
 
     <div id="projects" data-name="projects">
         <div class="project-container">
@@ -124,7 +126,7 @@
                 <img src="link-images/bbe.png" alt="Image">
                 <div class="bottom-section">
                     <h2>BurgerBuddyExpress</h2>
-                    <p>Is a group project for school of a full fastfood order website. I mainly did the front-end. Looks: 7/10</p>
+                    <p>Is a group project for school of a full food delivery order website. I mainly did the front-end. Looks: 7/10</p>
                 </div>
             </a>
             <a href="documents/tunewave/index.html" target="_blank" class="project tunewave">
@@ -150,19 +152,19 @@
             <h2>Contact Me</h2>
             <div class="input-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" required placeholder="Enter your name...">
             </div>
             <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" required placeholder="Enter your email">
             </div>
             <div class="input-group">
                 <label for="subject">Subject</label>
-                <input type="text" name="subject" id="subject" required>
+                <input type="text" name="subject" id="subject" required placeholder="Enter your subject..." autocomplete="off">
             </div>
             <div class="input-group">
                 <label for="message">Message</label>
-                <textarea name="message" id="message" required></textarea>
+                <textarea name="message" id="message" required placeholder="Write your message..."></textarea>
             </div>
             <button type="submit" class="btn">Send</button>
         </form>
@@ -186,7 +188,6 @@
     </div>
 
     <div data-name="about">About content</div>
-    <div data-name="resume">Resume content</div>
 
     <script src="js/header.js"></script>
     <script src="js/general.js"></script>
